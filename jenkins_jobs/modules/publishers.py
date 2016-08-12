@@ -2398,9 +2398,6 @@ def sonar(parser, xml_parent, data):
     if 'installation-name' in data:
         XML.SubElement(sonar, 'installationName').text = data[
             'installation-name']
-    if 'maven-installation-name' in data:
-        XML.SubElement(sonar, 'mavenInstallationName').text = data[
-            'maven-installation-name']
 
     if 'jdk' in data:
         XML.SubElement(sonar, 'jdk').text = data['jdk']
@@ -2409,6 +2406,9 @@ def sonar(parser, xml_parent, data):
     XML.SubElement(sonar, 'rootPom').text = data.get('root-pom', 'pom.xml')
     XML.SubElement(sonar, 'usePrivateRepository').text = str(
         data.get('private-maven-repo', False)).lower()
+    if 'maven-installation-name' in data:
+        XML.SubElement(sonar, 'mavenInstallationName').text = data[
+            'maven-installation-name']
     XML.SubElement(sonar, 'mavenOpts').text = data.get('maven-opts', '')
     XML.SubElement(sonar, 'jobAdditionalProperties').text = \
         data.get('additional-properties', '')
